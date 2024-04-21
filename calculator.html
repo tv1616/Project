@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        user-select: none;
+        background: #ecf0f3;
+    }
+    *{
+        padding:0;
+        margin:0;
+    }
+    header,footer{
+        position:absolute;
+        background-color: #000;
+        width: 100%;
+        
+    }
+    header{
+        height: 10vh;
+        top:0;
+
+    }
+    footer{
+        height: 15vh;
+        bottom: 0px;
+        color: white;
+    }
+    h1{
+            text-align: center;
+            text-transform: capitalize;
+            font-weight: bold;
+            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: aqua;
+
+      }
+      h1::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            width: 0%;
+            background-image: linear-gradient(46deg , red,yellow,green,blue,red);
+            transition: all ease 1s;
+
+      }
+      h1:hover{
+            cursor: progress;
+            background-color: azure;
+            text-shadow: 0px 0px 5px rgb(242, 58, 214);
+      }
+      h1:hover::after{
+            width: 100%;
+      }
+      .first_button{
+      font-size: 20px;
+      font-family: sans-serif;
+      border: none;
+      background-color: rgb(248, 251, 222);
+      text-transform: capitalize;
+      text-shadow: 0px 0px 2px rgb(162, 31, 249);
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin:20px;
+      position: relative;
+}
+.first_button:hover{
+      cursor: pointer;
+}
+    
+.content_cal {
+        width: 100%;
+        margin-top: 1.7em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row button {
+        width: 60px;
+        height: 30px;
+        font-size: 16px;
+        border: 2px dashed bisque;
+        outline:none;
+        margin: 5px;
+        border-radius: 4px;
+        transition: .1s;
+        box-shadow: 5px 5px 8px #00000020,
+            -5px -5px 8px #ffff;
+    
+    }
+
+    .row button:hover {
+        background-color:black;
+      color: white;
+    }
+    #scientific_calculator #screen{
+        margin-bottom: .5em;
+        width: auto;
+        height: 70px;
+        font-size: 35px;
+        outline: none;
+        border:2px inset black;
+        text-align: right;
+        padding-right: .5em;
+        background: #ecf0f3;
+        border-radius: 6px;
+        box-shadow: inset 8px 8px 8px #cbced1,
+            inset -8px -8px 8px #ffffff;
+    }
+    
+
+    .eval {
+        background: #33ccff;
+        color: #fff;
+        box-shadow: inset 5px 5px 8px #66d9ff,
+            inset -5px -5px 8px #00ace6;
+    }
+
+    .eval:hover {
+        box-shadow: inset 5px 5px 8px #00ace6,
+            inset -5px -5px 8px #00ace6;
+    }
+
+    .ac {
+        background: #33cc33;
+        color: #fff;
+    }
+
+    .ac:hover {
+        box-shadow: inset 5px 5px 8px #2eb82e,
+            inset -5px -5px 8px #33cc33;
+    }
+
+    .ce {
+        background: #ff3399;
+        color: #fff;
+    }
+
+    #ce:hover {
+        box-shadow: inset 5px 5px 8px #e60073,
+            inset -5px -5px 8px #ff3399;
+    }
+     
+      
+      #calculator #display {
+        margin-bottom: .5em;
+        width: auto;
+        height: 70px;
+        font-size: 35px;
+        outline: none;
+        border:2px inset black;
+        text-align: center;
+        padding-right: .5em;
+        background: #ecf0f3;
+        border-radius: 6px;
+        box-shadow: inset 8px 8px 8px #cbced1,
+            inset -8px -8px 8px #ffffff;
+}
+
+.button-calculator {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.button {
+    
+    width: 60px;
+        height: 30px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        border-radius: 10px;
+        transition: .1s;
+        box-shadow: 5px 5px 8px #00000020,
+            -5px -5px 8px #ffff;
+}
+
+.button:hover{
+      background-color:black;
+      color: white;
+}
+
+.second_button{
+    display: none;
+}
+#calculator{
+    display:none;
+}
+#scientific_calculator{
+    display: none;
+}
+    </style>
+
+</head>
+
+<body>
+      <header>
+            <h1>Generate multiple Calculators</h1>
+        </header>
+        <main>
+      <button class="first_button" > normal button </button>
+      <!-- <button class="second_button">specialised button</button> -->
+      <p class="para_button"></p>
+      <div class="contain_cal">
+            <div id="calculator">
+        <input type="text" id="display" class="change_value" value="">
+        <div class="button-calculator">
+            <div class="row">
+            <button class="ac" onclick="currentDisplay = '';
+      document.querySelector('#display').value = currentDisplay;" style="width:100px; padding-left:2px ;">AC</button>
+         <button class="button" onclick="currentDisplay = currentDisplay + '1';
+      document.querySelector('#display').value = currentDisplay;">1</button>
+            <button class="button" onclick="currentDisplay = currentDisplay + '2';
+      document.querySelector('#display').value = currentDisplay;">2</button>
+       <button class="button" onclick="currentDisplay = currentDisplay + '3';
+       document.querySelector('#display').value = currentDisplay;">3</button>
+       <button class="btn" style="width:3px;">(</button>
+        
+         </div>
+         <div class="row"></div>
+    
+    </div> 
+       <div class="row">
+        <button class="button" onclick="currentDisplay = currentDisplay + '4';
+        document.querySelector('#display').value = currentDisplay;">4</button>
+              <button class="button" onclick="currentDisplay = currentDisplay + '5';
+        document.querySelector('#display').value = currentDisplay;">5</button>
+            <button class="button" onclick="currentDisplay = currentDisplay + '6';
+      document.querySelector('#display').value = currentDisplay;">6</button>
+       <button class="btn">)</button>
+             <button class="button" onclick="currentDisplay = currentDisplay + '7';
+      document.querySelector('#display').value = currentDisplay;">7</button>
+      <button class="button" onclick="currentDisplay = currentDisplay + '-';
+      document.querySelector('#display').value = currentDisplay;">-</button>
+      </div>
+        <div class="row">
+            <button class="button" onclick="currentDisplay = currentDisplay + '8';
+            document.querySelector('#display').value = currentDisplay;">8</button>
+             <button class="button" onclick="currentDisplay = currentDisplay + '9';
+      document.querySelector('#display').value = currentDisplay;">9</button>
+             <button class="button" onclick="currentDisplay = currentDisplay + '0';
+      document.querySelector('#display').value = currentDisplay;">0</button>
+            <button class="button" onclick="currentDisplay = currentDisplay + '*';
+              document.querySelector('#display').value = currentDisplay;">*</button>
+               <button onclick="e()">e</button>
+              <button class="button" onclick="currentDisplay = currentDisplay + '.';
+      document.querySelector('#display').value = currentDisplay;">.</button>
+      </div>
+      <div class="row">
+            <button class="button" onclick="currentDisplay = Math.sqrt(currentDisplay);
+      document.querySelector('#display').value = currentDisplay;">^</button>
+            <button class="button" onclick="currentDisplay =  currentDisplay**currentDisplay;
+      document.querySelector('#display').value = currentDisplay;">**</button>
+      <button class="button" onclick="currentDisplay = currentDisplay + '/';
+      document.querySelector('#display').value = currentDisplay;">/</button>
+                   <button class="button" onclick="currentDisplay = currentDisplay + '00';
+                   document.querySelector('#display').value = currentDisplay;">00</button>
+             <button class="button" onclick="currentDisplay = currentDisplay + '+';
+             document.querySelector('#display').value = currentDisplay;">+</button>
+     <button class="eval" onclick="currentDisplay = eval(currentDisplay);
+      document.querySelector('#display').value = currentDisplay;">=</button>
+      </div>
+    
+    
+        </div>
+    </div>
+    <div id="scientific_calculator">
+      <input id="screen" type="text" placeholder="0">
+  
+
+  <div class="btns">
+      <div class="row">
+          <button class="ce" onclick="backspc()">CE</button>
+          <button onclick="fact()">x!</button>
+          <button class="btn">(</button>
+          <button class="btn">)</button>
+          <button class="btn">%</button>
+          <button class="ac" onclick="screen.value=''">AC</button>
+      </div>
+
+      <div class="row">
+          <button onclick="sin()">sin</button>
+          <button onclick="pi()">π</button>
+          <button class="btn">7</button>
+          <button class="btn">8</button>
+          <button class="btn">9</button>
+          <button class="btn">÷</button>
+      </div>
+
+      <div class="row">
+          <button onclick="cos()">cos</button>
+          <button onclick="log()">log</button>
+          <button class="btn">4</button>
+          <button class="btn">5</button>
+          <button class="btn">6</button>
+          <button class="btn">×</button>
+      </div>
+
+      <div class="row">
+          <button onclick="tan()">tan</button>
+          <button onclick="sqrt()">√</button>
+          <button class="btn">1</button>
+          <button class="btn">2</button>
+          <button class="btn">3</button>
+          <button class="btn">-</button>
+      </div>
+
+      <div class="row">
+          <button onclick="e()">e</button>
+          <button onclick="pow()">x <span style="position: relative; bottom: .4em; right: .1em;">y</span>
+          </button>
+          <button class="btn">0</button>
+          <button class="btn">.</button>
+          <button class="eval" onclick="screen.value=eval(screen.value)">=</button>
+          <button class="btn">+</button>
+      </div>
+  </div>
+  </div>
+</div>
+</main>
+<footer><h2>contact us</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae minima dolor adipisci, sequi ratione quia suscipit quasi ipsum perferendis consectetur, <br>
+          nisi aspernatur! Fugit fuga accusamus debitis earum sit velit aliquam.</p>
+      </footer>
+    <script>
+      var screen = document.querySelector('#screen');
+var btn = document.querySelectorAll('.btn');
+
+/*============ For getting the value of btn, Here we use for loop ============*/
+for (item of btn) {
+    item.addEventListener('click', (e) => {
+        btntext = e.target.innerText;
+
+        if (btntext == '×') {
+            btntext = '*';
+        }
+
+        if (btntext == '÷') {
+            btntext = '/';
+        }
+        screen.value += btntext;
+    });
+}
+
+
+function sin() {
+    screen.value = Math.sin(screen.value);
+}
+
+function cos() {
+    screen.value = Math.cos(screen.value);
+}
+
+function tan() {
+    screen.value = Math.tan(screen.value);
+}
+
+function pow() {
+    screen.value = Math.pow(screen.value, 2);
+}
+
+function sqrt() {
+    screen.value = Math.sqrt(screen.value, 2);
+}
+
+function log() {
+    screen.value = Math.log(screen.value);
+}
+
+function pi() {
+    screen.value = 3.14159265359;
+}
+
+function e() {
+    screen.value = 2.71828182846;
+}
+
+function fact() {
+    var i, num, f;
+    f = 1
+    num = screen.value;
+    for (i = 1; i <= num; i++) {
+        f = f * i;
+    }
+
+    i = i - 1;
+
+    screen.value = f;
+}
+
+function backspc() {
+    screen.value = screen.value.substr(0, screen.value.length - 1);
+}
+      let currentDisplay = '';
+       document.querySelector(`#display`).value = currentDisplay;
+        let sci_curr_dis = '';
+        document.querySelector(`#screen`).value = sci_curr_dis;
+
+        // handles the calculators by buttons of simple button and scientific button
+        let first_button = document.querySelector(`.first_button`);
+        let normal_cal = document.querySelector(`#calculator`);
+        let sci_cal = document.querySelector(`#scientific_calculator`);
+        let doing_msg =  document.querySelector(`.para_button`);
+
+        // Onclick event handler -- where click is event listener
+        first_button.addEventListener('click',()=>{
+            normal_cal.style.display = 'block'; 
+            doing_msg.style.cssText = "text-align: left; text-shadow: 0px 0px 4px red; font-size: 40px;";
+            doing_msg.innerText = "This is Your Simple Calculator !";
+            sci_cal.style.display = "none";
+            first_button.innerText ="Normal button";
+
+
+        });
+
+        // OnDblClick handler -- where dblclick is event listener
+        first_button.addEventListener('dblclick',()=>{
+              normal_cal.style.display = "none";
+            sci_cal.style.display = "block";
+            doing_msg.style.cssText = "text-align: right; text-shadow: 0px 0px 2px green; font-size: 40px;";
+            doing_msg.innerText = "And Here is Your Scientific Calculator !";
+            first_button.innerText = "Scientific button";
+            first_button.style.cssText = " text-shadow: 0px 0px 5px pink;"
+        });
+
+        
+        // addEventListener(event,function(),usecapture)  --- for capture write 'true' in parameter or for bubbling write 'false' in parameter or by default it takes false parameter
+        // bubbling means first child event will listen then parent event listening and capture means first parent event listening and then child event listen..
+    </script>
+</body>
+
+</html>

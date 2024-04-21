@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #big{
+           width: 400px;
+            height: 400px;
+            position: relative;
+            background: yellow;
+        }
+        #small{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+        <h1>hello welcome home</h1>
+        <button id="combinedBtn">click me</button>
+        <div id="big">
+        <div id="small"></div>
+        </div>
+   </body>
+   </html>
+   <script>
+   document.addEventListener('DOMContentLoaded', function() {
+    // Combined function for many actions
+    function text(){
+        const sd=document.getElementById("small");
+        sd.innerText="hello";
+    }
+    function addbgimg(){
+        const sd=document.getElementById("small");
+        sd.style.backgroundImage = "url('images.jpg')";
+        sd.style.backgroundSize="cover"
+    }
+    
+    
+    function changeColorAndMove() {
+        document.body.style.backgroundColor = "green";
+        
+        const big=document.getElementById("big");
+        const small=document.getElementById("small");
+        let t=setInterval(move,1);
+        let pos=1;
+        let test =true;
+        function move(){
+            small.style.left = pos + 'px';
+            small.style.top = pos + 'px';
+            small.style.bottom = pos + 'px';
+            small.style.right = pos + 'px';
+            if (test)
+             pos++;
+
+
+
+             
+            else
+             pos--;
+            if(pos>= 350)
+              test = false;
+            else if(pos <= 0)
+              test = true;
+        }}
+    
+    //another method for solving
+    // Add event listener to the button for combined action
+    // document.getElementById("combinedBtn").addEventListener("click" function(){
+    //     addbgimg();
+    //     changeColorAndMove();
+    // });
+    document.getElementById("combinedBtn").addEventListener("click", changeColorAndMove);
+    document.getElementById("combinedBtn").addEventListener("click", addbgimg);
+    document.getElementById("combinedBtn").addEventListener("click", text);
+    
+    });
+</script>
