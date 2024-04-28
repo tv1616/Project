@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="text">
+        <p>The Tanishka Varshney is the great person in the world<br>
+        she is amazing and her everything is amazing.</p>
+    </div>
+    <input type="text" id="searchin" placeholder="enter the text">
+    <button onclick="searchtext()">Search</button>
+    <div id="result"></div>
+    <script>
+        function searchtext(){
+           var searchText=document.getElementById("searchin").value;
+           var textdiv=document.getElementById("text");
+           var paragraph= textdiv.querySelector('p');
+           var text=paragraph.innerText;
+           var matches=text.match(new RegExp(searchText, 'g'));
+           var resultdiv=document.getElementById("result");
+           resultdiv.innerHTML='';
+
+           if(matches && matches.length > 0) {
+            var result='Text Found' + matches.length + ' times:\n\n';
+            matches.forEach(function (match){
+                result += match + '\n';
+                resultdiv.innerHTML += '<p>' + match + '</p>'; // Print on webpage
+            });
+            alert(result);
+            } else {
+                alert('Text not found.');
+            }
+            document.getElementById("searchin").value='';
+        }
+    </script>
+</body>
+</html>
