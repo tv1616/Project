@@ -5,17 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #er{
-            width:100px;
-            height: 100px;
+        #mybtn{
+            width:300 px;
+            height: 300 px;
             background-color: red;
-            color:aliceblue;
+            color: white;
             text-align: center;
-            font-weight: 600;
+            align-items: center;
+            font-weight: 700;
+            margin: 30 px;
+            padding: 300 px;
+    
         }
     </style>
 </head>
 <body>
-    <div id="er"><p>hello</p></div>
+    <div id="mybtn"><p>MOUSE OVER ME</p></div>
+    <script>
+       let change = document.getElementById("mybtn");
+        change.addEventListener('click',()=>{
+            change.innerText="THANK YOU";
+  }) 
+        
+    </script>
 </body>
 </html>
